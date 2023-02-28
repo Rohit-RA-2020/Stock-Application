@@ -1,14 +1,24 @@
+import 'package:counter_client/screens/auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
+import 'firebase_options.dart';
 import 'model.dart';
 import 'providers/provider.dart';
 import 'screens/home_page.dart';
 
 final uri = Uri.parse('ws://10.0.2.2:3000');
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(
     const ProviderScope(
       child: MyApp(),
@@ -26,7 +36,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFF16151A),
         canvasColor: Colors.transparent,
       ),
-      home: HomePage(),
+      home: const AuthScreen(),
     );
   }
 }
