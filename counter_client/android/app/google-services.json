@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "122229246459",
+    "project_id": "stocksapp-2802f",
+    "storage_bucket": "stocksapp-2802f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:122229246459:android:fbfdfa53982c7fd9bbe35e",
+        "android_client_info": {
+          "package_name": "com.example.counter_client"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "122229246459-cah2hirv7nsrhvm1mjemun65pnirob30.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.counter_client",
+            "certificate_hash": "b168074da52cb50190eb671ed1d2b9782fcecda9"
+          }
+        },
+        {
+          "client_id": "122229246459-b1dluj5n8d75ap3fil01r64609etoppg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBp5qzrALmisllVsTUxbTrnzqm10b7pUoc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "122229246459-12jfb2e4uq4dsnj91c6jrqbrnpne6tcf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
