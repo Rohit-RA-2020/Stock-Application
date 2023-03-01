@@ -20,7 +20,7 @@ var stocks = [
   },
   {
     image:"https://assets.stickpng.com/thumbs/5ec3e22d58550c000442773b.png",
-    symbol: "TATAM",
+    symbol: "TATA",
     status: 10.1,
     name: "TATA Motors",
     price: 160,

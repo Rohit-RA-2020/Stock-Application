@@ -21,11 +21,12 @@ void googleLogin(BuildContext context) async {
   try {
     await FirebaseAuth.instance.signInWithCredential(credential);
     // ignore: use_build_context_synchronously
-    Navigator.push(
+    Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(
         builder: (context) => const QuestionGreet(),
       ),
+      (route) => false,
     );
   } on FirebaseAuthException catch (e) {
     print(e.message);

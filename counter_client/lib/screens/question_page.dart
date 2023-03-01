@@ -27,8 +27,8 @@ class _QuestionGreetState extends State<QuestionGreet> {
               children: [
                 LottieBuilder.asset(
                   'assets/lottie/welcome.json',
-                  width: 300,
-                  height: 300,
+                  width: 200,
+                  height: 200,
                 ),
                 Text(
                   'Hey, Welcome to Stockase ${auth.currentUser!.displayName}!',
@@ -67,6 +67,7 @@ class _QuestionGreetState extends State<QuestionGreet> {
                     },
                     child: Text(
                       'Start Your Learning Journey',
+                      textAlign: TextAlign.center,
                       style: GoogleFonts.robotoMono(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,

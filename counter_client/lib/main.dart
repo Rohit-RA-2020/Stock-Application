@@ -10,7 +10,7 @@ import 'models/stock_model.dart';
 import 'providers/provider.dart';
 import 'screens/home_page.dart';
 
-final uri = Uri.parse('ws://10.0.2.2:3000');
+final uri = Uri.parse('ws://192.168.1.6:3000');
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

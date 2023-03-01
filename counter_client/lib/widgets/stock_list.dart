@@ -56,7 +56,7 @@ class MyStocksList extends ConsumerWidget {
                             stocksList[index].name,
                             style: GoogleFonts.robotoMono(
                               color: Colors.black,
-                              fontSize: 18,
+                              fontSize: 14,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
