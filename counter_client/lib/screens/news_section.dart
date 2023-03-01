@@ -24,7 +24,7 @@ class _NewsSectionState extends State<NewsSection> {
     articles: [],
   );
 
-  String apiKey = '';
+  String apiKey = '2e6d704739f347d8877e63d634d70e8d';
 
   void callApi() async {
     var client = http.Client();

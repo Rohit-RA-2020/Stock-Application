@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       Text(
                         FirebaseAuth.instance.currentUser!.email!,
                         style: const TextStyle(
-                          fontSize: 14,
+                          fontSize: 12,
                           color: Colors.white,
                         ),
                       ),
@@ -182,8 +182,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 InkWell(
                   onTap: () {},
                   child: Container(
-                    height: 150,
-                    width: MediaQuery.of(context).size.width * 0.40,
+                    height: 120,
+                    width: MediaQuery.of(context).size.width * 0.35,
                     decoration: BoxDecoration(
                       color: const Color(0xFFC2F640),
                       borderRadius: BorderRadius.circular(45),
@@ -216,8 +216,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 InkWell(
                   onTap: () {},
                   child: Container(
-                    height: 150,
-                    width: MediaQuery.of(context).size.width * 0.40,
+                    height: 120,
+                    width: MediaQuery.of(context).size.width * 0.35,
                     decoration: BoxDecoration(
                       color: const Color(0xFF2C2B30),
                       borderRadius: BorderRadius.circular(45),
