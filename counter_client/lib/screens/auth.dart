@@ -22,7 +22,7 @@ class _AuthScreenState extends State<AuthScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                'Welcome to your stockase',
+                'Welcome, Please login to continue',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.robotoMono(
                   fontSize: 30,

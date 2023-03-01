@@ -33,9 +33,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        scaffoldBackgroundColor: const Color(0xFF16151A),
-        canvasColor: Colors.transparent,
-      ),
+          useMaterial3: true,
+          scaffoldBackgroundColor: const Color(0xFF16151A),
+          canvasColor: Colors.transparent,
+          brightness: Brightness.dark),
       home: const AuthScreen(),
     );
   }
