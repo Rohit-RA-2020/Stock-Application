@@ -20,35 +20,53 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       key: _scaffoldKey,
       drawer: Drawer(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CircleAvatar(
-                radius: 50,
-                backgroundImage: NetworkImage(auth.currentUser!.photoURL!),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    radius: 30,
+                    backgroundImage: NetworkImage(
+                        FirebaseAuth.instance.currentUser!.photoURL!),
+                  ),
+                  const SizedBox(width: 20),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        FirebaseAuth.instance.currentUser!.displayName!,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        FirebaseAuth.instance.currentUser!.email!,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Spacer(),
+                ],
               ),
-              const SizedBox(height: 20),
-              Text(
-                auth.currentUser!.displayName!,
-                style: GoogleFonts.robotoMono(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: const Color.fromARGB(255, 245, 213, 213),
-                ),
-              ),
-              const SizedBox(height: 20),
-              Text(
-                auth.currentUser!.email!,
-                style: GoogleFonts.robotoMono(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w800,
-                  color: Colors.grey,
-                ),
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
+            ),
+            const SizedBox(height: 5),
+            const Divider(
+              color: Colors.white,
+              thickness: 1,
+            ),
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListTile(
+                onTap: () {
                   auth.signOut();
                   Navigator.pushAndRemoveUntil(
                     context,
@@ -58,10 +76,20 @@ class _MyHomePageState extends State<MyHomePage> {
                     (route) => false,
                   );
                 },
-                child: const Text('Sign Out'),
+                leading: const Icon(
+                  Icons.logout,
+                  color: Colors.white,
+                ),
+                title: const Text(
+                  'SignOut',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                  ),
+                ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
       body: Padding(

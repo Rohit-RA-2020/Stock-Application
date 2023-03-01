@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:http/http.dart' as http;
 import 'package:counter_client/models/news_model.dart';
 import 'package:flutter/material.dart';
@@ -70,35 +71,80 @@ class _NewsSectionState extends State<NewsSection> {
               itemCount: 5,
               itemBuilder: (context, index) {
                 return Container(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Colors.grey[900],
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: ListTile(
-                    onTap: () {
-                      launchURL(_newsModel.articles[index].url);
-                    },
-                    title: Text(
-                      _newsModel.articles[index].title,
-                      style: GoogleFonts.robotoMono(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                      ),
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
                     ),
-                    subtitle: Text(
-                      _newsModel.articles[index].content,
-                      style: GoogleFonts.robotoMono(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    trailing: Image.network(
-                      _newsModel.articles[index].urlToImage!,
-                      height: 100,
-                      width: 100,
+                    child: Column(
+                      children: <Widget>[
+                        CachedNetworkImage(
+                          imageUrl: _newsModel.articles[index].urlToImage!,
+                          imageBuilder: (context, imageProvider) => Container(
+                            height: 200,
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(15),
+                                topRight: Radius.circular(15),
+                              ),
+                              image: DecorationImage(
+                                image: imageProvider,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          placeholder: (context, url) => const Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                _newsModel.articles[index].title,
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Text(
+                                _newsModel.articles[index].content,
+                                style: const TextStyle(fontSize: 16),
+                              ),
+                              const SizedBox(height: 10),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    _newsModel.articles[index].source.name,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.grey.shade600,
+                                    ),
+                                  ),
+                                  Container(
+                                    alignment: Alignment.centerRight,
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        launchURL(
+                                            _newsModel.articles[index].url);
+                                      },
+                                      child: const Text("Read More"),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 );

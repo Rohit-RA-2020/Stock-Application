@@ -162,8 +162,8 @@ class WhatStock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return ListView(
+      //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
         Text(

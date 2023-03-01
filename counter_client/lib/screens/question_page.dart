@@ -27,8 +27,8 @@ class _QuestionGreetState extends State<QuestionGreet> {
               children: [
                 LottieBuilder.asset(
                   'assets/lottie/welcome.json',
-                  width: 200,
-                  height: 200,
+                  width: 180,
+                  height: 180,
                 ),
                 Text(
                   'Hey, Welcome to Stockase ${auth.currentUser!.displayName}!',
