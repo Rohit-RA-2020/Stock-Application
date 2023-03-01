@@ -1,3 +1,4 @@
+import 'package:counter_client/screens/news_section.dart';
 import 'package:counter_client/widgets/chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -62,14 +63,14 @@ class StockDetail extends ConsumerWidget {
           padding: const EdgeInsets.all(15.0),
           child: Column(
             children: [
-              GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Container(
                       height: 60,
                       width: 60,
                       decoration: BoxDecoration(
@@ -82,29 +83,52 @@ class StockDetail extends ConsumerWidget {
                         size: 25,
                       ),
                     ),
-                    Column(
-                      children: [
-                        Text(
-                          stock[index].name,
-                          style: GoogleFonts.robotoMono(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
+                  ),
+                  Column(
+                    children: [
+                      Text(
+                        stock[index].name,
+                        style: GoogleFonts.robotoMono(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
                         ),
-                        Text(
-                          stock[index].symbol,
-                          style: GoogleFonts.robotoMono(
-                            color: Colors.grey.shade600,
-                            fontSize: 15,
-                          ),
+                      ),
+                      Text(
+                        stock[index].symbol,
+                        style: GoogleFonts.robotoMono(
+                          color: Colors.grey.shade600,
+                          fontSize: 15,
                         ),
-                      ],
+                      ),
+                    ],
+                  ),
+                  // leave the space empty
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              NewsSection(stock: stock[index].symbol),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      height: 60,
+                      width: 60,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF2D2B32),
+                        borderRadius: BorderRadius.circular(18),
+                      ),
+                      child: const Icon(
+                        Icons.newspaper,
+                        color: Colors.white,
+                        size: 25,
+                      ),
                     ),
-                    // leave the space empty
-                    const SizedBox(width: 60),
-                  ],
-                ),
+                  ),
+                ],
               ),
               const SizedBox(height: 20),
               Hero(

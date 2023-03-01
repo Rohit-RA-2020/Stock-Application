@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 import 'firebase_options.dart';
-import 'model.dart';
+import 'models/stock_model.dart';
 import 'providers/provider.dart';
 import 'screens/home_page.dart';
 
