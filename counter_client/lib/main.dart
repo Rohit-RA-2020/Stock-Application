@@ -3,18 +3,14 @@ import 'package:counter_client/screens/pages/all_stocks.dart';
 import 'package:counter_client/screens/pages/dashboard.dart';
 import 'package:counter_client/screens/pages/news.dart';
 import 'package:counter_client/screens/pages/settings.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
 
 import 'firebase_options.dart';
-import 'models/stock_model.dart';
-import 'providers/provider.dart';
-
-final uri = Uri.parse('ws://192.168.226.200:3000');
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +37,8 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: const Color(0xFF16151A),
           canvasColor: Colors.transparent,
           brightness: Brightness.dark),
-      home: const AuthScreen(),
+      home:
+          FirebaseAuth.instance.currentUser == null ? AuthScreen() : HomePage(),
     );
   }
 }
@@ -54,8 +51,6 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class _HomePageState extends ConsumerState<HomePage> {
-  final channel = WebSocketChannel.connect(uri);
-
   int _currentIndex = 0;
 
   final iconList = <IconData>[
@@ -75,33 +70,6 @@ class _HomePageState extends ConsumerState<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: StreamBuilder(
-          stream: channel.stream,
-          builder: (context, snapshot) {
-            if (snapshot.hasData &&
-                snapshot.data != 'connected to server, welcome client') {
-              Future(() {
-                ref.read(stocksListProvider.notifier).state =
-                    stocksListFromJson(snapshot.data);
-              });
-              return pageList[_currentIndex];
-            }
-            if (snapshot.hasError) {
-              return const Center(
-                child: Text(
-                  'Error connecting to server',
-                  style: TextStyle(fontSize: 30),
-                ),
-              );
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          },
-        ),
-      ),
       bottomNavigationBar: SalomonBottomBar(
         itemShape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(50)),
@@ -130,6 +98,9 @@ class _HomePageState extends ConsumerState<HomePage> {
             selectedColor: Colors.teal,
           ),
         ],
+      ),
+      body: SafeArea(
+        child: pageList[_currentIndex],
       ),
     );
   }

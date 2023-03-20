@@ -37,7 +37,7 @@ class _DashboardState extends State<Dashboard> {
                     children: [
                       Text(
                         FirebaseAuth.instance.currentUser!.displayName!,
-                        style: const TextStyle(
+                        style: GoogleFonts.robotoMono(
                           fontSize: 20,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -46,7 +46,7 @@ class _DashboardState extends State<Dashboard> {
                       const SizedBox(height: 4),
                       Text(
                         FirebaseAuth.instance.currentUser!.email!,
-                        style: const TextStyle(
+                        style: GoogleFonts.robotoMono(
                           fontSize: 12,
                           color: Colors.white,
                         ),
@@ -80,9 +80,9 @@ class _DashboardState extends State<Dashboard> {
                   Icons.logout,
                   color: Colors.white,
                 ),
-                title: const Text(
+                title: Text(
                   'SignOut',
-                  style: TextStyle(
+                  style: GoogleFonts.robotoMono(
                     color: Colors.white,
                     fontSize: 18,
                   ),
@@ -110,20 +110,14 @@ class _DashboardState extends State<Dashboard> {
                   ),
                 ),
                 const SizedBox(width: 20),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 20,
-                  ),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF2D2B32),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: const Icon(
-                    Icons.library_books_outlined,
+                Text(
+                  'Dashboard',
+                  style: GoogleFonts.robotoMono(
                     color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
                   ),
-                )
+                ),
               ],
             ),
             const SizedBox(height: 20),
@@ -171,82 +165,6 @@ class _DashboardState extends State<Dashboard> {
                     color: Colors.grey,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 30),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                InkWell(
-                  onTap: () {},
-                  child: Container(
-                    height: 120,
-                    width: MediaQuery.of(context).size.width * 0.35,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFC2F640),
-                      borderRadius: BorderRadius.circular(45),
-                    ),
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          const SizedBox(height: 20),
-                          const Icon(
-                            Icons.arrow_outward_outlined,
-                            color: Colors.black,
-                            size: 30,
-                          ),
-                          Text(
-                            'Top Up',
-                            style: GoogleFonts.robotoMono(
-                              color: Colors.black,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 20),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 5.0),
-                InkWell(
-                  onTap: () {},
-                  child: Container(
-                    height: 120,
-                    width: MediaQuery.of(context).size.width * 0.35,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF2C2B30),
-                      borderRadius: BorderRadius.circular(45),
-                    ),
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          const SizedBox(height: 20),
-                          Transform.rotate(
-                            angle: 3,
-                            child: const Icon(
-                              Icons.arrow_outward,
-                              color: Colors.white,
-                              size: 30,
-                            ),
-                          ),
-                          Text(
-                            'Withdraw',
-                            style: GoogleFonts.robotoMono(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 20),
-                        ],
-                      ),
-                    ),
                   ),
                 ),
               ],

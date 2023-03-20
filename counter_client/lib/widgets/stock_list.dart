@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../colors.dart';
 import '../providers/provider.dart';
-import '../screens/stock_detail.dart';
 
 class MyStocksList extends ConsumerWidget {
   const MyStocksList({
@@ -13,7 +12,6 @@ class MyStocksList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final stocksList = ref.watch(stocksListProvider);
     return Center(
       child: ListView.builder(
         itemCount: 4,
@@ -33,7 +31,6 @@ class MyStocksList extends ConsumerWidget {
                 height: 100,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: stockColors[index],
                   borderRadius: BorderRadius.circular(25),
                 ),
                 child: Padding(
@@ -43,7 +40,7 @@ class MyStocksList extends ConsumerWidget {
                       Hero(
                         tag: 'image$index',
                         child: Image.network(
-                          stocksList[index].image,
+                          'https://www.freepnglogos.com/uploads/company-logo-png/company-logo-transparent-png-19.png',
                           height: 60,
                         ),
                       ),
@@ -53,7 +50,7 @@ class MyStocksList extends ConsumerWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            stocksList[index].name,
+                            'Sample Stock',
                             style: GoogleFonts.robotoMono(
                               color: Colors.black,
                               fontSize: 14,
@@ -61,7 +58,7 @@ class MyStocksList extends ConsumerWidget {
                             ),
                           ),
                           Text(
-                            stocksList[index].symbol,
+                            'SPLE',
                             style: GoogleFonts.robotoMono(
                               color: Colors.grey.shade700,
                               fontSize: 16,
@@ -76,7 +73,7 @@ class MyStocksList extends ConsumerWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                            '₹ ${stocksList[index].price}',
+                            '\$ 100',
                             style: GoogleFonts.roboto(
                               color: Colors.black,
                               fontSize: 20,
@@ -84,7 +81,7 @@ class MyStocksList extends ConsumerWidget {
                             ),
                           ),
                           Text(
-                            stocksList[index].status.toString(),
+                            '90%',
                             style: GoogleFonts.robotoMono(
                               color: Colors.grey.shade700,
                               fontSize: 16,
