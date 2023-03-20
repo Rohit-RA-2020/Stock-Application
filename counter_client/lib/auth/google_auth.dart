@@ -29,6 +29,5 @@ void googleLogin(BuildContext context) async {
       (route) => false,
     );
   } on FirebaseAuthException catch (e) {
-    print(e.message);
   }
 }

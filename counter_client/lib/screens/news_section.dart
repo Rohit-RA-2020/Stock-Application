@@ -18,7 +18,7 @@ class NewsSection extends StatefulWidget {
 }
 
 class _NewsSectionState extends State<NewsSection> {
-  late NewsModel _newsModel = NewsModel(
+  late NewsModel? _newsModel = NewsModel(
     status: '',
     totalResults: 0,
     articles: [],
@@ -63,7 +63,7 @@ class _NewsSectionState extends State<NewsSection> {
           ),
         ),
       ),
-      body: _newsModel.totalResults == 0
+      body: _newsModel == null || _newsModel!.articles.isEmpty
           ? const Center(
               child: CircularProgressIndicator(),
             )
@@ -79,7 +79,7 @@ class _NewsSectionState extends State<NewsSection> {
                     child: Column(
                       children: <Widget>[
                         CachedNetworkImage(
-                          imageUrl: _newsModel.articles[index].urlToImage!,
+                          imageUrl: _newsModel!.articles[index].urlToImage!,
                           imageBuilder: (context, imageProvider) => Container(
                             height: 200,
                             decoration: BoxDecoration(
@@ -105,7 +105,7 @@ class _NewsSectionState extends State<NewsSection> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                _newsModel.articles[index].title,
+                                _newsModel!.articles[index].title,
                                 style: const TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
@@ -113,7 +113,7 @@ class _NewsSectionState extends State<NewsSection> {
                               ),
                               const SizedBox(height: 10),
                               Text(
-                                _newsModel.articles[index].content,
+                                _newsModel!.articles[index].content,
                                 style: const TextStyle(fontSize: 16),
                               ),
                               const SizedBox(height: 10),
@@ -122,7 +122,7 @@ class _NewsSectionState extends State<NewsSection> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    _newsModel.articles[index].source.name,
+                                    _newsModel!.articles[index].source.name,
                                     style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
@@ -134,7 +134,7 @@ class _NewsSectionState extends State<NewsSection> {
                                     child: ElevatedButton(
                                       onPressed: () {
                                         launchURL(
-                                            _newsModel.articles[index].url);
+                                            _newsModel!.articles[index].url);
                                       },
                                       child: const Text("Read More"),
                                     ),
