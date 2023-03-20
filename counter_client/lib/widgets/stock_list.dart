@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MyStocksList extends ConsumerWidget {
@@ -47,60 +46,69 @@ class MyStocksList extends ConsumerWidget {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(child: CircularProgressIndicator());
                   }
-                  return SizedBox(
-                    height: 120,
-                    child: Card(
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: 90,
-                            height: 90,
-                            child: CachedNetworkImage(
-                              imageUrl: snapshot.data!['image'],
-                              fit: BoxFit.fitWidth,
+                  return GestureDetector(
+                    onTap: () {
+                      // Remove the stock from the portfolio
+                      // FirebaseFirestore.instance
+                      //     .collection('portfolio')
+                      //     .doc(userId)
+                          
+                    },
+                    child: SizedBox(
+                      height: 120,
+                      child: Card(
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 90,
+                              height: 90,
+                              child: CachedNetworkImage(
+                                imageUrl: snapshot.data!['image'],
+                                fit: BoxFit.fitWidth,
+                              ),
                             ),
-                          ),
-                          const SizedBox(width: 10),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                snapshot.data!['name'],
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const SizedBox(height: 5),
-                              Text(
-                                snapshot.data!['symbol'],
-                                style: const TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ),
-                          const Spacer(),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  snapshot.data!['price'].toString(),
+                            const SizedBox(width: 10),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  snapshot.data!['name'],
                                   style: const TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                              ),
-                              const SizedBox(height: 5),
-                            ],
-                          ),
-                        ],
+                                const SizedBox(height: 5),
+                                Text(
+                                  snapshot.data!['symbol'],
+                                  style: const TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const Spacer(),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    snapshot.data!['price'].toString(),
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 5),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );

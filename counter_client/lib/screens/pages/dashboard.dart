@@ -1,18 +1,21 @@
 import 'package:counter_client/screens/auth.dart';
+import 'package:counter_client/screens/learning_module/learning.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../providers/provider.dart';
 import '../../widgets/stock_list.dart';
 
-class Dashboard extends StatefulWidget {
+class Dashboard extends ConsumerStatefulWidget {
   const Dashboard({super.key});
 
   @override
-  State<Dashboard> createState() => _DashboardState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _DashboardState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class _DashboardState extends ConsumerState<Dashboard> {
   FirebaseAuth auth = FirebaseAuth.instance;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
@@ -105,11 +108,28 @@ class _DashboardState extends State<Dashboard> {
                   ),
                 ),
                 const SizedBox(width: 20),
-                Text(
-                  'Dashboard',
-                  style: GoogleFonts.robotoMono(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LearningPath(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: 60,
+                    width: 60,
+                    decoration: BoxDecoration(
+                      color: ref.read(darkModeProvider)
+                          ? Colors.grey.shade800
+                          : Colors.grey.shade200,
+                      borderRadius: BorderRadius.circular(18),
+                    ),
+                    child: const Icon(
+                      Icons.book_outlined,
+                      size: 25,
+                    ),
                   ),
                 ),
               ],

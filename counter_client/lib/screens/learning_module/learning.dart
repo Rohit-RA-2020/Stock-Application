@@ -93,10 +93,12 @@ class _LearningPathState extends ConsumerState<LearningPath> {
                   ElevatedButton(
                     onPressed: _currentIndex == _screens.length - 1
                         ? () {
-                            Navigator.push(
+                            Navigator.pushAndRemoveUntil(
                               context,
                               CupertinoPageRoute(
-                                  builder: (context) => const HomePage()),
+                                builder: (context) => const HomePage(),
+                              ),
+                              (route) => false,
                             );
                           }
                         : () {
