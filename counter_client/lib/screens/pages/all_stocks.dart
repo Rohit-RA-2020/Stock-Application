@@ -47,13 +47,13 @@ class _SettingsState extends ConsumerState<AllStocks> {
                     );
                   },
                   child: SizedBox(
-                    height: 150,
+                    height: 120,
                     child: Card(
                       child: Row(
                         children: [
                           SizedBox(
-                            width: 100,
-                            height: 100,
+                            width: 90,
+                            height: 90,
                             child: Hero(
                               tag: snapshot.data!.docs[index].id,
                               child: CachedNetworkImage(
