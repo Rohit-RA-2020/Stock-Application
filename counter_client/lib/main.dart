@@ -14,7 +14,7 @@ import 'firebase_options.dart';
 import 'models/stock_model.dart';
 import 'providers/provider.dart';
 
-final uri = Uri.parse('ws://10.0.2.2:3000');
+final uri = Uri.parse('ws://192.168.226.200:3000');
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -68,7 +68,7 @@ class _HomePageState extends ConsumerState<HomePage> {
   final pageList = [
     const Dashboard(),
     const AllStocks(),
-    const NewsSection(),
+    const NewsPage(),
     const Settings(),
   ];
 

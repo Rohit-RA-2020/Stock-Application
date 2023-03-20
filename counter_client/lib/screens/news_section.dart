@@ -63,7 +63,7 @@ class _NewsSectionState extends State<NewsSection> {
           ),
         ),
       ),
-      body: _newsModel == null || _newsModel!.articles.isEmpty
+      body: _newsModel == null || _newsModel!.articles!.isEmpty
           ? const Center(
               child: CircularProgressIndicator(),
             )
@@ -79,7 +79,8 @@ class _NewsSectionState extends State<NewsSection> {
                     child: Column(
                       children: <Widget>[
                         CachedNetworkImage(
-                          imageUrl: _newsModel!.articles[index].urlToImage!,
+                          imageUrl: _newsModel!.articles![index].urlToImage ??
+                              'https://thumbs.dreamstime.com/b/news-newspapers-folded-stacked-word-wooden-block-puzzle-dice-concept-newspaper-media-press-release-42301371.jpg',
                           imageBuilder: (context, imageProvider) => Container(
                             height: 200,
                             decoration: BoxDecoration(
@@ -105,7 +106,7 @@ class _NewsSectionState extends State<NewsSection> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                _newsModel!.articles[index].title,
+                                _newsModel!.articles![index].title ?? '',
                                 style: const TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
@@ -113,7 +114,7 @@ class _NewsSectionState extends State<NewsSection> {
                               ),
                               const SizedBox(height: 10),
                               Text(
-                                _newsModel!.articles[index].content,
+                                _newsModel!.articles![index].description ?? '',
                                 style: const TextStyle(fontSize: 16),
                               ),
                               const SizedBox(height: 10),
@@ -122,7 +123,7 @@ class _NewsSectionState extends State<NewsSection> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    _newsModel!.articles[index].source.name,
+                                    _newsModel!.articles![index].source!.name,
                                     style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
@@ -134,7 +135,9 @@ class _NewsSectionState extends State<NewsSection> {
                                     child: ElevatedButton(
                                       onPressed: () {
                                         launchURL(
-                                            _newsModel!.articles[index].url);
+                                          _newsModel!.articles![index].url ??
+                                              '',
+                                        );
                                       },
                                       child: const Text("Read More"),
                                     ),

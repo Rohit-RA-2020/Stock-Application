@@ -20,12 +20,12 @@ class MyStocksList extends ConsumerWidget {
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => StockDetail(index: index),
-                ),
-              );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => StockDetail(index: index),
+              //   ),
+              // );
             },
             child: Padding(
               padding: const EdgeInsets.only(top: 5, bottom: 5),
