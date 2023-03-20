@@ -172,7 +172,7 @@ class _DashboardState extends State<Dashboard> {
               ),
             ),
             const SizedBox(height: 20),
-            const Expanded(child: MyStocksList()),
+            Expanded(child: MyStocksList()),
           ],
         ),
       ),

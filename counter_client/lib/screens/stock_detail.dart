@@ -221,25 +221,18 @@ class _StockDetailState extends ConsumerState<StockDetail> {
                                                               _buyController
                                                                   .text),
                                                     });
+                                                    // add stock to user
                                                     FirebaseFirestore.instance
                                                         .collection('portfolio')
                                                         .doc(userId)
-                                                        .update({
+                                                        .set({
                                                       'stocks': FieldValue
                                                           .arrayUnion([
                                                         {
-                                                          'id': widget.docId,
-                                                          'name': snapshot
-                                                              .data!['name'],
-                                                          'price': snapshot
-                                                              .data!['price'],
-                                                          'volume':
-                                                              double.parse(
-                                                                  _buyController
-                                                                      .text),
+                                                          'name': widget.docId,
                                                         }
                                                       ])
-                                                    });
+                                                    }, SetOptions(merge: true));
 
                                                     Navigator.pop(context);
                                                   }
