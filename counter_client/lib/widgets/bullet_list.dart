@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class BulletList extends StatelessWidget {
+import '../providers/provider.dart';
+
+class BulletList extends ConsumerWidget {
   final List<String> strings;
 
   const BulletList(this.strings, {super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       alignment: Alignment.centerLeft,
       padding: const EdgeInsets.fromLTRB(25, 15, 16, 25),
@@ -22,7 +25,6 @@ class BulletList extends StatelessWidget {
                 style: GoogleFonts.robotoMono(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
                 ),
               ),
               const SizedBox(width: 5),
@@ -34,7 +36,9 @@ class BulletList extends StatelessWidget {
                   style: GoogleFonts.robotoMono(
                     fontSize: 15,
                     fontWeight: FontWeight.w400,
-                    color: const Color.fromARGB(255, 245, 188, 188),
+                    color: ref.read(darkModeProvider)
+                        ? const Color.fromARGB(255, 245, 188, 188)
+                        : const Color.fromARGB(255, 240, 89, 89),
                   ),
                 ),
               ),

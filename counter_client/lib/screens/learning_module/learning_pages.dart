@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../providers/provider.dart';
 import '../../widgets/bullet_list.dart';
 
-class Keywords extends StatelessWidget {
+class Keywords extends ConsumerWidget {
   const Keywords({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -18,7 +20,9 @@ class Keywords extends StatelessWidget {
           style: GoogleFonts.robotoMono(
             fontSize: 25,
             fontWeight: FontWeight.bold,
-            color: const Color.fromARGB(255, 245, 188, 188),
+            color: ref.read(darkModeProvider)
+                ? const Color.fromARGB(255, 245, 188, 188)
+                : const Color.fromARGB(255, 240, 89, 89),
           ),
           textAlign: TextAlign.center,
         ),
@@ -47,11 +51,11 @@ class Keywords extends StatelessWidget {
   }
 }
 
-class InvestTechnique extends StatelessWidget {
+class InvestTechnique extends ConsumerWidget {
   const InvestTechnique({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -61,7 +65,9 @@ class InvestTechnique extends StatelessWidget {
           style: GoogleFonts.robotoMono(
             fontSize: 25,
             fontWeight: FontWeight.bold,
-            color: const Color.fromARGB(255, 245, 188, 188),
+            color: ref.read(darkModeProvider)
+                ? const Color.fromARGB(255, 245, 188, 188)
+                : const Color.fromARGB(255, 240, 89, 89),
           ),
           textAlign: TextAlign.center,
         ),
@@ -84,11 +90,11 @@ class InvestTechnique extends StatelessWidget {
   }
 }
 
-class HowInvest extends StatelessWidget {
+class HowInvest extends ConsumerWidget {
   const HowInvest({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -98,7 +104,9 @@ class HowInvest extends StatelessWidget {
           style: GoogleFonts.robotoMono(
             fontSize: 25,
             fontWeight: FontWeight.bold,
-            color: const Color.fromARGB(255, 245, 188, 188),
+            color: ref.read(darkModeProvider)
+                ? const Color.fromARGB(255, 245, 188, 188)
+                : const Color.fromARGB(255, 240, 89, 89),
           ),
           textAlign: TextAlign.center,
         ),
@@ -120,11 +128,11 @@ class HowInvest extends StatelessWidget {
   }
 }
 
-class WhyInvest extends StatelessWidget {
+class WhyInvest extends ConsumerWidget {
   const WhyInvest({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -134,7 +142,9 @@ class WhyInvest extends StatelessWidget {
           style: GoogleFonts.robotoMono(
             fontSize: 25,
             fontWeight: FontWeight.bold,
-            color: const Color.fromARGB(255, 245, 188, 188),
+            color: ref.read(darkModeProvider)
+                ? const Color.fromARGB(255, 245, 188, 188)
+                : const Color.fromARGB(255, 240, 89, 89),
           ),
           textAlign: TextAlign.center,
         ),
@@ -157,11 +167,11 @@ class WhyInvest extends StatelessWidget {
   }
 }
 
-class WhatStock extends StatelessWidget {
+class WhatStock extends ConsumerWidget {
   const WhatStock({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ListView(
       //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -171,7 +181,9 @@ class WhatStock extends StatelessWidget {
           style: GoogleFonts.robotoMono(
             fontSize: 25,
             fontWeight: FontWeight.bold,
-            color: const Color.fromARGB(255, 245, 188, 188),
+            color: ref.read(darkModeProvider)
+                ? const Color.fromARGB(255, 245, 188, 188)
+                : const Color.fromARGB(255, 240, 89, 89),
           ),
           textAlign: TextAlign.center,
         ),
@@ -186,7 +198,9 @@ class WhatStock extends StatelessWidget {
           style: GoogleFonts.robotoMono(
             fontSize: 15,
             fontWeight: FontWeight.w400,
-            color: const Color.fromARGB(255, 245, 188, 188),
+            color: ref.read(darkModeProvider)
+                ? const Color.fromARGB(255, 245, 188, 188)
+                : const Color.fromARGB(255, 240, 89, 89),
           ),
           textAlign: TextAlign.center,
         ),

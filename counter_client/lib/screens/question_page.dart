@@ -36,7 +36,6 @@ class _QuestionGreetState extends State<QuestionGreet> {
                   style: GoogleFonts.robotoMono(
                     fontSize: 26,
                     fontWeight: FontWeight.bold,
-                    color: const Color.fromARGB(255, 245, 213, 213),
                   ),
                 ),
                 const SizedBox(height: 50),
@@ -90,7 +89,6 @@ class _QuestionGreetState extends State<QuestionGreet> {
                   height: 70,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.transparent,
                       side: const BorderSide(
                         color: Color(0xFF8d7bba),
                         width: 2,
@@ -100,7 +98,7 @@ class _QuestionGreetState extends State<QuestionGreet> {
                       Navigator.push(
                         context,
                         PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => HomePage(),
+                          pageBuilder: (_, __, ___) => const HomePage(),
                           transitionDuration: const Duration(milliseconds: 500),
                           transitionsBuilder: (_, a, __, c) =>
                               FadeTransition(opacity: a, child: c),
@@ -111,7 +109,6 @@ class _QuestionGreetState extends State<QuestionGreet> {
                       'Continue to Dashboard',
                       style: GoogleFonts.robotoMono(
                         fontSize: 20,
-                        color: const Color(0xfff7f2f9),
                         fontWeight: FontWeight.bold,
                       ),
                     ),

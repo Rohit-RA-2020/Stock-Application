@@ -27,7 +27,6 @@ class _AuthScreenState extends State<AuthScreen> {
                 style: GoogleFonts.robotoMono(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
                 ),
               ),
               const SizedBox(height: 20),

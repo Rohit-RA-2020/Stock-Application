@@ -1,20 +1,22 @@
 import 'package:animations/animations.dart';
 import 'package:counter_client/main.dart';
+import 'package:counter_client/providers/provider.dart';
 import 'package:counter_client/screens/learning_module/learning_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LearningPath extends StatefulWidget {
+class LearningPath extends ConsumerStatefulWidget {
   const LearningPath({Key? key}) : super(key: key);
 
   @override
-  State<LearningPath> createState() {
+  ConsumerState<ConsumerStatefulWidget> createState() {
     return _LearningPathState();
   }
 }
 
-class _LearningPathState extends State<LearningPath> {
+class _LearningPathState extends ConsumerState<LearningPath> {
   int _currentIndex = 0;
   bool isReverse = false;
 
@@ -35,7 +37,6 @@ class _LearningPathState extends State<LearningPath> {
             style: GoogleFonts.robotoMono(
               fontSize: 25,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
             )),
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -50,7 +51,9 @@ class _LearningPathState extends State<LearningPath> {
               style: GoogleFonts.robotoMono(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
-                color: const Color.fromARGB(255, 245, 188, 188),
+                color: ref.read(darkModeProvider)
+                    ? const Color.fromARGB(255, 245, 188, 188)
+                    : const Color.fromARGB(255, 240, 89, 89),
               ),
             ),
             Expanded(
@@ -93,7 +96,7 @@ class _LearningPathState extends State<LearningPath> {
                             Navigator.push(
                               context,
                               CupertinoPageRoute(
-                                  builder: (context) => HomePage()),
+                                  builder: (context) => const HomePage()),
                             );
                           }
                         : () {
