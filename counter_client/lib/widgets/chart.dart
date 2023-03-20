@@ -126,10 +126,9 @@ class _LineChartWidgetState extends State<LineChartWidget> {
                     child: Text(
                       '1D',
                       style: TextStyle(
-                        color: selectedTime == 0
-                            ? stockColors[widget.index]
-                            : Colors.white,
-                      ),
+                          color: selectedTime == 0
+                              ? stockColors[widget.index]
+                              : null),
                     ),
                   ),
                   // create button for 1W
@@ -144,7 +143,7 @@ class _LineChartWidgetState extends State<LineChartWidget> {
                       style: TextStyle(
                         color: selectedTime == 1
                             ? stockColors[widget.index]
-                            : Colors.white,
+                            : null,
                       ),
                     ),
                   ),
@@ -160,7 +159,7 @@ class _LineChartWidgetState extends State<LineChartWidget> {
                       style: TextStyle(
                         color: selectedTime == 2
                             ? stockColors[widget.index]
-                            : Colors.white,
+                            : null,
                       ),
                     ),
                   ),
@@ -176,7 +175,7 @@ class _LineChartWidgetState extends State<LineChartWidget> {
                       style: TextStyle(
                         color: selectedTime == 3
                             ? stockColors[widget.index]
-                            : Colors.white,
+                            : null,
                       ),
                     ),
                   ),
@@ -192,7 +191,7 @@ class _LineChartWidgetState extends State<LineChartWidget> {
                       style: TextStyle(
                         color: selectedTime == 4
                             ? stockColors[widget.index]
-                            : Colors.white,
+                            : null,
                       ),
                     ),
                   ),

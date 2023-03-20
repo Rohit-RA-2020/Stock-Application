@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:counter_client/providers/provider.dart';
 import 'package:counter_client/screens/news_section.dart';
 import 'package:counter_client/widgets/chart.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -53,9 +54,11 @@ class _StockDetailState extends ConsumerState<StockDetail> {
             bottomSheet: Container(
               height: 90,
               width: double.infinity,
-              decoration: const BoxDecoration(
-                color: Color(0xFF1C1C1A),
-                borderRadius: BorderRadius.only(
+              decoration: BoxDecoration(
+                color: ref.watch(darkModeProvider) == true
+                    ? Colors.black
+                    : Colors.white,
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(30),
                   topRight: Radius.circular(30),
                 ),
@@ -245,7 +248,6 @@ class _StockDetailState extends ConsumerState<StockDetail> {
                                             child: Text(
                                               'Pay \$ $pricePay',
                                               style: GoogleFonts.robotoMono(
-                                                color: Colors.white,
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.bold,
                                               ),
@@ -315,12 +317,13 @@ class _StockDetailState extends ConsumerState<StockDetail> {
                             height: 60,
                             width: 60,
                             decoration: BoxDecoration(
-                              color: const Color(0xFF2D2B32),
+                              color: ref.read(darkModeProvider)
+                                  ? Colors.grey.shade800
+                                  : Colors.grey.shade200,
                               borderRadius: BorderRadius.circular(18),
                             ),
                             child: const Icon(
                               Icons.arrow_back_ios,
-                              color: Colors.white,
                               size: 25,
                             ),
                           ),
@@ -330,8 +333,7 @@ class _StockDetailState extends ConsumerState<StockDetail> {
                             Text(
                               snapshot.data!['name'],
                               style: GoogleFonts.robotoMono(
-                                color: Colors.white,
-                                fontSize: 16,
+                                fontSize: 18,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -359,12 +361,13 @@ class _StockDetailState extends ConsumerState<StockDetail> {
                             height: 60,
                             width: 60,
                             decoration: BoxDecoration(
-                              color: const Color(0xFF2D2B32),
+                              color: ref.read(darkModeProvider)
+                                  ? Colors.grey.shade800
+                                  : Colors.grey.shade200,
                               borderRadius: BorderRadius.circular(18),
                             ),
                             child: const Icon(
                               Icons.newspaper,
-                              color: Colors.white,
                               size: 25,
                             ),
                           ),
@@ -383,7 +386,6 @@ class _StockDetailState extends ConsumerState<StockDetail> {
                     Text(
                       '\$${snapshot.data!['price']}',
                       style: GoogleFonts.robotoMono(
-                        color: Colors.white,
                         fontSize: 40,
                         fontWeight: FontWeight.bold,
                       ),
@@ -405,8 +407,8 @@ class _StockDetailState extends ConsumerState<StockDetail> {
                             Text(
                               snapshot.data!['high'].toString(),
                               style: GoogleFonts.robotoMono(
-                                color: Colors.white,
                                 fontSize: 15,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ],
@@ -428,8 +430,8 @@ class _StockDetailState extends ConsumerState<StockDetail> {
                             Text(
                               snapshot.data!['low'].toString(),
                               style: GoogleFonts.robotoMono(
-                                color: Colors.white,
                                 fontSize: 15,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ],
@@ -451,8 +453,8 @@ class _StockDetailState extends ConsumerState<StockDetail> {
                             Text(
                               snapshot.data!['volume'].toString(),
                               style: GoogleFonts.robotoMono(
-                                color: Colors.white,
                                 fontSize: 15,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ],

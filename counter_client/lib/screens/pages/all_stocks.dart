@@ -58,7 +58,7 @@ class _SettingsState extends ConsumerState<AllStocks> {
                               tag: snapshot.data!.docs[index].id,
                               child: CachedNetworkImage(
                                 imageUrl: snapshot.data!.docs[index]['image'],
-                                fit: BoxFit.cover,
+                                fit: BoxFit.fitWidth,
                               ),
                             ),
                           ),

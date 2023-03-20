@@ -39,7 +39,6 @@ class _DashboardState extends State<Dashboard> {
                         FirebaseAuth.instance.currentUser!.displayName!,
                         style: GoogleFonts.robotoMono(
                           fontSize: 20,
-                          color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -48,7 +47,6 @@ class _DashboardState extends State<Dashboard> {
                         FirebaseAuth.instance.currentUser!.email!,
                         style: GoogleFonts.robotoMono(
                           fontSize: 12,
-                          color: Colors.white,
                         ),
                       ),
                     ],
@@ -59,7 +57,6 @@ class _DashboardState extends State<Dashboard> {
             ),
             const SizedBox(height: 5),
             const Divider(
-              color: Colors.white,
               thickness: 1,
             ),
             const Spacer(),
@@ -78,12 +75,10 @@ class _DashboardState extends State<Dashboard> {
                 },
                 leading: const Icon(
                   Icons.logout,
-                  color: Colors.white,
                 ),
                 title: Text(
                   'SignOut',
                   style: GoogleFonts.robotoMono(
-                    color: Colors.white,
                     fontSize: 18,
                   ),
                 ),
@@ -113,7 +108,6 @@ class _DashboardState extends State<Dashboard> {
                 Text(
                   'Dashboard',
                   style: GoogleFonts.robotoMono(
-                    color: Colors.white,
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
@@ -132,7 +126,6 @@ class _DashboardState extends State<Dashboard> {
             Text(
               '₹ 1,24,790',
               style: GoogleFonts.robotoMono(
-                color: Colors.white,
                 fontSize: 40,
                 fontWeight: FontWeight.bold,
               ),

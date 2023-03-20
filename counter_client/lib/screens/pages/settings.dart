@@ -1,20 +1,22 @@
 import 'package:counter_client/screens/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class Settings extends StatefulWidget {
+import '../../providers/provider.dart';
+
+class Settings extends ConsumerStatefulWidget {
   const Settings({super.key});
 
   @override
-  State<Settings> createState() => _SettingsState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _SettingsState();
 }
 
-class _SettingsState extends State<Settings> {
+class _SettingsState extends ConsumerState<Settings> {
   late FirebaseAuth auth;
   late bool isEmailVerified;
 
   bool isSwitched = false;
-  bool isDarkMode = true;
   @override
   void initState() {
     auth = FirebaseAuth.instance;
@@ -24,6 +26,7 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
+    final dm = ref.watch(darkModeProvider);
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.all(15),
@@ -86,11 +89,9 @@ class _SettingsState extends State<Settings> {
             ),
             const Divider(),
             SwitchListTile(
-              value: isDarkMode,
+              value: dm,
               onChanged: (value) {
-                setState(() {
-                  isDarkMode = value;
-                });
+                ref.read(darkModeProvider.notifier).toggleDarkMode();
               },
               title: const Text('Dark Mode'),
             ),

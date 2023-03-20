@@ -1,3 +1,5 @@
+import 'package:counter_client/colors.dart';
+import 'package:counter_client/providers/provider.dart';
 import 'package:counter_client/screens/auth.dart';
 import 'package:counter_client/screens/pages/all_stocks.dart';
 import 'package:counter_client/screens/pages/dashboard.dart';
@@ -26,19 +28,17 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final dm = ref.watch(darkModeProvider);
     return MaterialApp(
-      theme: ThemeData(
-          useMaterial3: true,
-          scaffoldBackgroundColor: const Color(0xFF16151A),
-          canvasColor: Colors.transparent,
-          brightness: Brightness.dark),
-      home:
-          FirebaseAuth.instance.currentUser == null ? AuthScreen() : HomePage(),
+      theme: dm ? darkTheme : lightTheme,
+      home: FirebaseAuth.instance.currentUser == null
+          ? const AuthScreen()
+          : const HomePage(),
     );
   }
 }
@@ -80,7 +80,7 @@ class _HomePageState extends ConsumerState<HomePage> {
           SalomonBottomBarItem(
             icon: const Icon(Icons.home),
             title: const Text("Dashboard"),
-            selectedColor: Colors.yellow,
+            selectedColor: Colors.indigo,
           ),
           SalomonBottomBarItem(
             icon: const Icon(Icons.list_alt_rounded),
