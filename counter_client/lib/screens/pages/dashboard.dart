@@ -152,7 +152,7 @@ class _DashboardState extends ConsumerState<Dashboard> {
               builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
                 if (snapshot.hasData) {
                   return Text(
-                    '\$${snapshot.data!.get('balance')}',
+                    '\$${snapshot.data!.get('balance').toStringAsFixed(3)}',
                     style: GoogleFonts.robotoMono(
                       fontSize: 40,
                       fontWeight: FontWeight.bold,
