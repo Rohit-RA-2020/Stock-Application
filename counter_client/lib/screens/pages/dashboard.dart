@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:counter_client/screens/auth.dart';
 import 'package:counter_client/screens/learning_module/learning.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -143,12 +144,24 @@ class _DashboardState extends ConsumerState<Dashboard> {
               ),
             ),
             const SizedBox(height: 20),
-            Text(
-              '₹ 1,24,790',
-              style: GoogleFonts.robotoMono(
-                fontSize: 40,
-                fontWeight: FontWeight.bold,
-              ),
+            StreamBuilder(
+              stream: FirebaseFirestore.instance
+                  .collection('portfolio')
+                  .doc(auth.currentUser!.uid)
+                  .snapshots(),
+              builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+                if (snapshot.hasData) {
+                  return Text(
+                    '\$${snapshot.data!.get('balance')}',
+                    style: GoogleFonts.robotoMono(
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  );
+                } else {
+                  return const Text('Loading...');
+                }
+              },
             ),
             const SizedBox(height: 10),
             Row(
@@ -184,7 +197,7 @@ class _DashboardState extends ConsumerState<Dashboard> {
             ),
             const SizedBox(height: 30),
             Text(
-              'Your Stocks',
+              'Your Stocks | Transactions',
               style: GoogleFonts.robotoMono(
                 color: Colors.grey,
                 fontSize: 20,

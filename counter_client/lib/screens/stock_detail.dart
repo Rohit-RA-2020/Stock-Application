@@ -74,190 +74,7 @@ class _StockDetailState extends ConsumerState<StockDetail> {
                         height: 100,
                         width: 150,
                         child: ElevatedButton(
-                          onPressed: () {
-                            showAnimatedDialog(
-                              context: context,
-                              barrierDismissible: true,
-                              builder: (BuildContext context) {
-                                return StatefulBuilder(
-                                  builder: (BuildContext context,
-                                          StateSetter mySetState) =>
-                                      AlertDialog(
-                                    shape: const RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(32.0))),
-                                    contentPadding:
-                                        const EdgeInsets.only(top: 10.0),
-                                    content: Padding(
-                                      padding: const EdgeInsets.all(5.0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                'Buy Stock for ',
-                                                style: GoogleFonts.robotoMono(
-                                                  fontSize: 18,
-                                                  color: Colors.grey.shade500,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                              Text(
-                                                snapshot.data!['name'],
-                                                style: GoogleFonts.robotoMono(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w700,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                'Available Units ',
-                                                style: GoogleFonts.robotoMono(
-                                                  fontSize: 18,
-                                                  color: Colors.grey.shade500,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                              Text(
-                                                '${snapshot.data!['volume']} ',
-                                                style: GoogleFonts.robotoMono(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                'Price per unit ',
-                                                style: GoogleFonts.robotoMono(
-                                                  fontSize: 18,
-                                                  color: Colors.grey.shade500,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                              Text(
-                                                '\$ ${snapshot.data!['price']} ',
-                                                style: GoogleFonts.robotoMono(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: TextField(
-                                              controller: _buyController,
-                                              onChanged: (value) {
-                                                mySetState(
-                                                  () {
-                                                    if (double.parse(value) >
-                                                        snapshot
-                                                            .data!['volume']) {
-                                                      isValid = false;
-                                                    } else {
-                                                      isValid = true;
-                                                    }
-                                                    pricePay =
-                                                        double.parse(value) *
-                                                            snapshot
-                                                                .data!['price'];
-                                                  },
-                                                );
-                                              },
-                                              keyboardType:
-                                                  TextInputType.number,
-                                              decoration: const InputDecoration(
-                                                hintText:
-                                                    'Enter number of units',
-                                                border: OutlineInputBorder(),
-                                              ),
-                                            ),
-                                          ),
-                                          // Add a button
-                                          ElevatedButton(
-                                            onPressed: isValid
-                                                ? () {
-                                                    // Add a transaction
-                                                    FirebaseFirestore.instance
-                                                        .collection(
-                                                            'transactions')
-                                                        .add({
-                                                      'name': snapshot
-                                                          .data!['name'],
-                                                      'price': snapshot
-                                                          .data!['price'],
-                                                      'volume': double.parse(
-                                                          _buyController.text),
-                                                      'date': DateTime.now(),
-                                                      'type': 'buy',
-                                                      'user': userId,
-                                                    });
-                                                    FirebaseFirestore.instance
-                                                        .collection('stocks')
-                                                        .doc(widget.docId)
-                                                        .update({
-                                                      'volume': snapshot
-                                                              .data!['volume'] -
-                                                          double.parse(
-                                                              _buyController
-                                                                  .text),
-                                                    });
-                                                    // add stock to user
-                                                    FirebaseFirestore.instance
-                                                        .collection('portfolio')
-                                                        .doc(userId)
-                                                        .set({
-                                                      'stocks': FieldValue
-                                                          .arrayUnion([
-                                                        {
-                                                          'name': widget.docId,
-                                                        }
-                                                      ])
-                                                    }, SetOptions(merge: true));
-
-                                                    Navigator.pop(context);
-                                                  }
-                                                : null,
-                                            style: ElevatedButton.styleFrom(),
-                                            child: Text(
-                                              'Pay \$ $pricePay',
-                                              style: GoogleFonts.robotoMono(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              },
-                              animationType:
-                                  DialogTransitionType.slideFromBottomFade,
-                              curve: Curves.fastOutSlowIn,
-                              duration: const Duration(milliseconds: 500),
-                            );
-                          },
+                          onPressed: () => buyingMenu(context, snapshot),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.green,
                           ),
@@ -463,6 +280,184 @@ class _StockDetailState extends ConsumerState<StockDetail> {
           );
         }
       },
+    );
+  }
+
+  Future<Object?> buyingMenu(BuildContext context,
+      AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot) {
+    return showAnimatedDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (BuildContext context, StateSetter mySetState) =>
+              AlertDialog(
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(32.0))),
+            contentPadding: const EdgeInsets.only(top: 10.0),
+            content: Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Buy Stock for ',
+                        style: GoogleFonts.robotoMono(
+                          fontSize: 18,
+                          color: Colors.grey.shade500,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Text(
+                        snapshot.data!['name'],
+                        style: GoogleFonts.robotoMono(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Available Units ',
+                        style: GoogleFonts.robotoMono(
+                          fontSize: 18,
+                          color: Colors.grey.shade500,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Text(
+                        '${snapshot.data!['volume']} ',
+                        style: GoogleFonts.robotoMono(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Price per unit ',
+                        style: GoogleFonts.robotoMono(
+                          fontSize: 18,
+                          color: Colors.grey.shade500,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Text(
+                        '\$ ${snapshot.data!['price']} ',
+                        style: GoogleFonts.robotoMono(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      controller: _buyController,
+                      onChanged: (value) {
+                        mySetState(
+                          () {
+                            if (double.parse(value) >
+                                snapshot.data!['volume']) {
+                              isValid = false;
+                            } else {
+                              isValid = true;
+                            }
+                            pricePay =
+                                double.parse(value) * snapshot.data!['price'];
+                          },
+                        );
+                      },
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        hintText: 'Enter number of units',
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                  ),
+                  // Add a button
+                  ElevatedButton(
+                    onPressed: isValid
+                        ? () {
+                            // Add a transaction
+                            FirebaseFirestore.instance
+                                .collection('transactions')
+                                .add({
+                              'name': snapshot.data!['name'],
+                              'price': snapshot.data!['price'],
+                              'volume': double.parse(_buyController.text),
+                              'date': DateTime.now(),
+                              'type': 'buy',
+                              'user': userId,
+                            });
+                            FirebaseFirestore.instance
+                                .collection('stocks')
+                                .doc(widget.docId)
+                                .update({
+                              'volume': snapshot.data!['volume'] -
+                                  double.parse(_buyController.text),
+                            });
+                            // add stock to user
+                            FirebaseFirestore.instance
+                                .collection('portfolio')
+                                .doc(userId)
+                                .set({
+                              'stocks': FieldValue.arrayUnion([
+                                {
+                                  'name': widget.docId,
+                                  'volume': // update volume
+                                      double.parse(_buyController.text),
+                                }
+                              ])
+                            }, SetOptions(merge: true));
+
+                            // update balance in user
+                            FirebaseFirestore.instance
+                                .collection('portfolio')
+                                .doc(userId)
+                                .update({
+                              'balance': FieldValue.increment(
+                                  double.parse(_buyController.text) *
+                                      snapshot.data!['price']),
+                            });
+
+                            Navigator.pop(context);
+                          }
+                        : null,
+                    style: ElevatedButton.styleFrom(),
+                    child: Text(
+                      'Pay \$ $pricePay',
+                      style: GoogleFonts.robotoMono(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+      animationType: DialogTransitionType.slideFromBottomFade,
+      curve: Curves.fastOutSlowIn,
+      duration: const Duration(milliseconds: 500),
     );
   }
 }

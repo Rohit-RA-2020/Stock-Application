@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:counter_client/screens/question_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,18 @@ void googleLogin(BuildContext context) async {
   );
 
   try {
-    await FirebaseAuth.instance.signInWithCredential(credential);
+    var user = await FirebaseAuth.instance.signInWithCredential(credential);
+    // create a empty user document in firestore
+    user.additionalUserInfo!.isNewUser
+        ? await FirebaseFirestore.instance
+            .collection('portfolio')
+            .doc(user.user!.uid)
+            .set({
+            'stocks': [],
+            'balance': 0.0,
+          })
+        : null;
+
     // ignore: use_build_context_synchronously
     Navigator.pushAndRemoveUntil(
       context,

@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MyStocksList extends ConsumerWidget {
   MyStocksList({
@@ -19,8 +20,8 @@ class MyStocksList extends ConsumerWidget {
           .collection('portfolio')
           .doc(userId)
           .snapshots(),
-      builder: (context, snapshot) {
-        if (snapshot.data == null) {
+      builder: (context, portfolioSnapshot) {
+        if (portfolioSnapshot.data == null) {
           return const Center(
             child: Text(
               'Try Adding some Stocks',
@@ -30,13 +31,24 @@ class MyStocksList extends ConsumerWidget {
               ),
             ),
           );
-        } else if (snapshot.connectionState == ConnectionState.waiting) {
+        } else if (portfolioSnapshot.connectionState ==
+            ConnectionState.waiting) {
           return const CircularProgressIndicator();
+        } else if (portfolioSnapshot.hasError) {
+          return Center(
+            child: Text(
+              'Try Adding some Stocks',
+              style: GoogleFonts.robotoMono(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          );
         } else {
           return ListView.builder(
-            itemCount: snapshot.data!['stocks'].length,
+            itemCount: portfolioSnapshot.data!['stocks'].length,
             itemBuilder: (context, index) {
-              String docid = snapshot.data!['stocks'][index]['name'];
+              String docid = portfolioSnapshot.data!['stocks'][index]['name'];
               return FutureBuilder(
                 future: FirebaseFirestore.instance
                     .collection('stocks')
@@ -52,16 +64,15 @@ class MyStocksList extends ConsumerWidget {
                       // FirebaseFirestore.instance
                       //     .collection('portfolio')
                       //     .doc(userId)
-                          
                     },
                     child: SizedBox(
-                      height: 120,
+                      height: 100,
                       child: Card(
                         child: Row(
                           children: [
                             SizedBox(
-                              width: 90,
-                              height: 90,
+                              width: 60,
+                              height: 60,
                               child: CachedNetworkImage(
                                 imageUrl: snapshot.data!['image'],
                                 fit: BoxFit.fitWidth,
@@ -94,17 +105,69 @@ class MyStocksList extends ConsumerWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    snapshot.data!['price'].toString(),
-                                    style: const TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        '\$ ${snapshot.data!['price'].toString()}',
+                                        style: const TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                    index % 2 == 0
+                                        ? const Padding(
+                                            padding:
+                                                EdgeInsets.only(right: 2.0),
+                                            child: Icon(
+                                              Icons
+                                                  .arrow_drop_down_circle_outlined,
+                                              color: Colors.red,
+                                            ),
+                                          )
+                                        : const Padding(
+                                            padding:
+                                                EdgeInsets.only(right: 2.0),
+                                            child: RotatedBox(
+                                              quarterTurns: -2,
+                                              child: Icon(
+                                                Icons
+                                                    .arrow_drop_down_circle_outlined,
+                                                color: Colors.green,
+                                              ),
+                                            ),
+                                          )
+                                  ],
                                 ),
                                 const SizedBox(height: 5),
+                                Row(
+                                  children: [
+                                    const Padding(
+                                      padding: EdgeInsets.all(0.0),
+                                      child: Text(
+                                        'Units bought:',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(4.0),
+                                      child: Text(
+                                        portfolioSnapshot.data!['stocks'][index]
+                                                ['volume']
+                                            .toString(),
+                                        style: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ],
                             ),
                           ],
