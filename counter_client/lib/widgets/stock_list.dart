@@ -55,7 +55,7 @@ class MyStocksList extends ConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      'Delete',
+                      'Sell',
                       style: GoogleFonts.robotoMono(
                         fontSize: 14,
                         color: Colors.redAccent,
@@ -63,7 +63,7 @@ class MyStocksList extends ConsumerWidget {
                       ),
                     ),
                     const Icon(
-                      Icons.delete,
+                      Icons.sell_rounded,
                       color: Colors.redAccent,
                     ),
                   ],

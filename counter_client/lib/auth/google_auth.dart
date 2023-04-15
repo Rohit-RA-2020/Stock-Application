@@ -41,6 +41,11 @@ void googleLogin(BuildContext context) async {
       (route) => false,
     );
   } on FirebaseAuthException catch (e) {
-    print(e);
+    // ignore: use_build_context_synchronously
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(e.message!),
+      ),
+    );
   }
 }
