@@ -272,7 +272,7 @@ class _StockDetailState extends ConsumerState<StockDetail> {
                       ],
                     ),
                     const SizedBox(height: 20),
-                    const LineChartWidget(index: 1),
+                    const LineChartWidget(),
                   ],
                 ),
               ),

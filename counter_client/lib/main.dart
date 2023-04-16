@@ -1,10 +1,7 @@
 import 'package:counter_client/colors.dart';
 import 'package:counter_client/providers/provider.dart';
 import 'package:counter_client/screens/auth.dart';
-import 'package:counter_client/screens/pages/all_stocks.dart';
-import 'package:counter_client/screens/pages/dashboard.dart';
-import 'package:counter_client/screens/pages/news.dart';
-import 'package:counter_client/screens/pages/settings.dart';
+import 'package:counter_client/screens/pages/pages.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

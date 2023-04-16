@@ -1,4 +1,3 @@
-import 'package:counter_client/colors.dart';
 import 'package:counter_client/data.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -6,10 +5,10 @@ import 'package:flutter/material.dart';
 class LineChartWidget extends StatefulWidget {
   const LineChartWidget({
     super.key,
-    required this.index,
+    // required this.index,
   });
 
-  final int index;
+  //final int index;
 
   @override
   State<LineChartWidget> createState() => _LineChartWidgetState();
@@ -71,19 +70,19 @@ class _LineChartWidgetState extends State<LineChartWidget> {
                       show: true,
                       gradient: LinearGradient(
                         colors: [
-                          stockColors[widget.index].withOpacity(0.5),
-                          stockColors[widget.index].withOpacity(0.0),
+                          Colors.orange.withOpacity(0.5),
+                          Colors.orange.withOpacity(0.0),
                         ],
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                       ),
                     ),
                     shadow: const Shadow(
-                      color: Color(0xFF00EB7A),
+                      color: Colors.orange,
                       offset: Offset(0, 2),
                       blurRadius: 10,
                     ),
-                    color: stockColors[widget.index],
+                    color: Colors.orange,
                     spots: chartData[selectedTime],
                     isCurved: true,
                     isStrokeCapRound: true,
@@ -107,7 +106,7 @@ class _LineChartWidgetState extends State<LineChartWidget> {
               width: double.infinity,
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: stockColors[widget.index],
+                  color: Colors.orange,
                   width: 2,
                 ),
                 borderRadius: BorderRadius.circular(20),
@@ -126,9 +125,7 @@ class _LineChartWidgetState extends State<LineChartWidget> {
                     child: Text(
                       '1D',
                       style: TextStyle(
-                          color: selectedTime == 0
-                              ? stockColors[widget.index]
-                              : null),
+                          color: selectedTime == 0 ? Colors.orange : null),
                     ),
                   ),
                   // create button for 1W
@@ -141,9 +138,7 @@ class _LineChartWidgetState extends State<LineChartWidget> {
                     child: Text(
                       '1W',
                       style: TextStyle(
-                        color: selectedTime == 1
-                            ? stockColors[widget.index]
-                            : null,
+                        color: selectedTime == 1 ? Colors.orange : null,
                       ),
                     ),
                   ),
@@ -157,9 +152,7 @@ class _LineChartWidgetState extends State<LineChartWidget> {
                     child: Text(
                       '1M',
                       style: TextStyle(
-                        color: selectedTime == 2
-                            ? stockColors[widget.index]
-                            : null,
+                        color: selectedTime == 2 ? Colors.orange : null,
                       ),
                     ),
                   ),
@@ -173,9 +166,7 @@ class _LineChartWidgetState extends State<LineChartWidget> {
                     child: Text(
                       '1Y',
                       style: TextStyle(
-                        color: selectedTime == 3
-                            ? stockColors[widget.index]
-                            : null,
+                        color: selectedTime == 3 ? Colors.orange : null,
                       ),
                     ),
                   ),
@@ -189,9 +180,7 @@ class _LineChartWidgetState extends State<LineChartWidget> {
                     child: Text(
                       'ALL',
                       style: TextStyle(
-                        color: selectedTime == 4
-                            ? stockColors[widget.index]
-                            : null,
+                        color: selectedTime == 4 ? Colors.orange : null,
                       ),
                     ),
                   ),
