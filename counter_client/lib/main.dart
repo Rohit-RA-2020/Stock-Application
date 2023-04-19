@@ -55,7 +55,7 @@ class _HomePageState extends ConsumerState<HomePage> {
     const Dashboard(),
     const AllStocks(),
     const NewsPage(),
-    PredictionPage(),
+    const PredictionPage(),
     const Settings(),
   ];
 

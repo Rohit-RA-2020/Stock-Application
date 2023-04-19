@@ -22,99 +22,103 @@ class _QuestionGreetState extends State<QuestionGreet> {
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                LottieBuilder.asset(
-                  'assets/lottie/welcome.json',
-                  width: 170,
-                  height: 170,
-                ),
-                Text(
-                  'Hey, Welcome to Stockase ${auth.currentUser!.displayName}!',
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.robotoMono(
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  LottieBuilder.asset(
+                    'assets/lottie/welcome.json',
+                    width: 170,
+                    height: 170,
                   ),
-                ),
-                const SizedBox(height: 50),
-                Text(
-                  'We offer you a platform to learn about stocks and invest in them, all in one place.',
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.robotoMono(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w800,
-                    color: Colors.grey,
+                  Text(
+                    'Hey, Welcome to Stockase ${auth.currentUser!.displayName}!',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.robotoMono(
+                      fontSize: 26,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 50),
-                SizedBox(
-                  width: double.infinity,
-                  height: 70,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => const LearningPath(),
-                          transitionDuration: const Duration(milliseconds: 500),
-                          transitionsBuilder: (_, a, __, c) =>
-                              FadeTransition(opacity: a, child: c),
+                  const SizedBox(height: 50),
+                  Text(
+                    'We offer you a platform to learn about stocks and invest in them, all in one place.',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.robotoMono(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w800,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  const SizedBox(height: 50),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 70,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder: (_, __, ___) => const LearningPath(),
+                            transitionDuration:
+                                const Duration(milliseconds: 500),
+                            transitionsBuilder: (_, a, __, c) =>
+                                FadeTransition(opacity: a, child: c),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        'Start Your Learning Journey',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.robotoMono(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
                         ),
-                      );
-                    },
-                    child: Text(
-                      'Start Your Learning Journey',
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.robotoMono(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  'Or',
-                  style: GoogleFonts.robotoMono(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey,
-                  ),
-                ),
-                const SizedBox(height: 20),
-                SizedBox(
-                  width: double.infinity,
-                  height: 70,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      side: const BorderSide(
-                        color: Color(0xFF8d7bba),
-                        width: 2,
-                      ),
+                  const SizedBox(height: 20),
+                  Text(
+                    'Or',
+                    style: GoogleFonts.robotoMono(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey,
                     ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => const HomePage(),
-                          transitionDuration: const Duration(milliseconds: 500),
-                          transitionsBuilder: (_, a, __, c) =>
-                              FadeTransition(opacity: a, child: c),
+                  ),
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 70,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        side: const BorderSide(
+                          color: Color(0xFF8d7bba),
+                          width: 2,
                         ),
-                      );
-                    },
-                    child: Text(
-                      'Continue to Dashboard',
-                      style: GoogleFonts.robotoMono(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder: (_, __, ___) => const HomePage(),
+                            transitionDuration:
+                                const Duration(milliseconds: 500),
+                            transitionsBuilder: (_, a, __, c) =>
+                                FadeTransition(opacity: a, child: c),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        'Continue to Dashboard',
+                        style: GoogleFonts.robotoMono(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
