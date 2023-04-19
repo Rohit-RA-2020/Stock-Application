@@ -10,6 +10,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 import 'firebase_options.dart';
+import 'screens/pages/prediction_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -50,17 +51,11 @@ class HomePage extends ConsumerStatefulWidget {
 class _HomePageState extends ConsumerState<HomePage> {
   int _currentIndex = 0;
 
-  final iconList = <IconData>[
-    Icons.home,
-    Icons.search,
-    Icons.add,
-    Icons.favorite,
-  ];
-
   final pageList = [
     const Dashboard(),
     const AllStocks(),
     const NewsPage(),
+    PredictionPage(),
     const Settings(),
   ];
 
@@ -76,22 +71,52 @@ class _HomePageState extends ConsumerState<HomePage> {
         items: [
           SalomonBottomBarItem(
             icon: const Icon(Icons.home),
-            title: const Text("Dashboard"),
+            title: const Text(
+              "Home",
+              style: TextStyle(
+                fontSize: 12,
+              ),
+            ),
             selectedColor: Colors.indigo,
           ),
           SalomonBottomBarItem(
             icon: const Icon(Icons.list_alt_rounded),
-            title: const Text("All Stocks"),
+            title: const Text(
+              "All Stocks",
+              style: TextStyle(
+                fontSize: 12,
+              ),
+            ),
             selectedColor: Colors.pink,
           ),
           SalomonBottomBarItem(
             icon: const Icon(Icons.newspaper),
-            title: const Text("News"),
+            title: const Text(
+              "News",
+              style: TextStyle(
+                fontSize: 12,
+              ),
+            ),
             selectedColor: Colors.orange,
           ),
           SalomonBottomBarItem(
+            icon: const Icon(Icons.graphic_eq_outlined),
+            title: const Text(
+              "Prediction",
+              style: TextStyle(
+                fontSize: 12,
+              ),
+            ),
+            selectedColor: Colors.purple,
+          ),
+          SalomonBottomBarItem(
             icon: const Icon(Icons.settings),
-            title: const Text("Settings"),
+            title: const Text(
+              "Settings",
+              style: TextStyle(
+                fontSize: 12,
+              ),
+            ),
             selectedColor: Colors.teal,
           ),
         ],

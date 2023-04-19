@@ -288,6 +288,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_webview_plugin:
+    dependency: "direct main"
+    description:
+      name: flutter_webview_plugin
+      sha256: ec410b10822b06432e11f9680b319609d6f34bcdabb31fcc4990ac8a2aaf9ff0
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.0"
   google_fonts:
     dependency: "direct main"
     description:
@@ -449,13 +457,13 @@ packages:
     source: hosted
     version: "0.2.4"
   path_provider:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path_provider
-      sha256: "04890b994ee89bfa80bf3080bfec40d5a92c5c7a785ebb02c13084a099d2b6f9"
+      sha256: c7edf82217d4b2952b2129a61d3ad60f1075b9299e629e149a8d2e39c2e6aad4
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.13"
+    version: "2.0.14"
   path_provider_android:
     dependency: transitive
     description:
@@ -749,6 +757,38 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.0"
+  webview_flutter:
+    dependency: "direct main"
+    description:
+      name: webview_flutter
+      sha256: cbfdd39a8e7124c28a5472ee2d82c55fd823277b1f0690c5f7f83aaf6d61704a
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.0"
+  webview_flutter_android:
+    dependency: transitive
+    description:
+      name: webview_flutter_android
+      sha256: de4f772fc738f74cc7fe920636aabf3e78ba78032ba8b8698be666064b1c18d9
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.5.3"
+  webview_flutter_platform_interface:
+    dependency: transitive
+    description:
+      name: webview_flutter_platform_interface
+      sha256: "6341f92977609be71391f4d4dcd64bfaa8ac657af1dfb2e231b5c1724e8c6c36"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
+  webview_flutter_wkwebview:
+    dependency: transitive
+    description:
+      name: webview_flutter_wkwebview
+      sha256: "2ef3f65fd49061c18e4d837a411308f2850417f2d0a7c11aad2c3857bee12c18"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.3.0"
   win32:
     dependency: transitive
     description:
