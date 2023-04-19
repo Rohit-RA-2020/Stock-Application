@@ -421,8 +421,10 @@ class _StockDetailState extends ConsumerState<StockDetail> {
                               'stocks': FieldValue.arrayUnion([
                                 {
                                   'name': widget.docId,
-                                  'volume': // update volume
-                                      double.parse(_buyController.text),
+                                  'volume': double.parse(_buyController.text),
+                                  'paid': double.parse(_buyController.text) *
+                                      snapshot.data!['price'],
+                                  'unit': snapshot.data!['price']
                                 }
                               ])
                             }, SetOptions(merge: true));

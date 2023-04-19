@@ -69,15 +69,32 @@ class MyStocksList extends ConsumerWidget {
                   ],
                 ),
                 onDismissed: (direction) {
-                  // Remove the item from the data source.
+                  //update the portfolio value
+                  FirebaseFirestore.instance
+                      .collection('portfolio')
+                      .doc(userId)
+                      .update({
+                    'balance': portfolioSnapshot.data!['balance'] -
+                        portfolioSnapshot.data!['stocks'][index]['paid'],
+                  });
+
                   FirebaseFirestore.instance
                       .collection('portfolio')
                       .doc(userId)
                       .update({
                     'stocks': FieldValue.arrayRemove([
-                      {'name': docid}
+                      {
+                        'name': docid,
+                        'paid': portfolioSnapshot.data!['stocks'][index]
+                            ['paid'],
+                        'unit': portfolioSnapshot.data!['stocks'][index]
+                            ['unit'],
+                        'volume': portfolioSnapshot.data!['stocks'][index]
+                            ['volume'],
+                      }
                     ])
                   });
+
                   // Then show a snackbar.
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
